@@ -22,13 +22,19 @@ public class CruddemoApplication {
 		return runner -> {
             //readStudent(studentDAO);
 
-			createStudent(studentDAO);
+			//createStudent(studentDAO);
 
 			//createMultipleStudents(studentDAO);
 
-			queryForStudents(studentDAO);
+			//queryForStudents(studentDAO);
+
+			//queryForStudentsByLastName(studentDAO);
+
+			updateStudent(studentDAO);
+
 		};
 	}
+
 
 	private void readStudent(StudentDAO studentDAO) {
 		//create a new student object
@@ -92,4 +98,35 @@ public class CruddemoApplication {
 			System.out.println(tempStudent);
 		}
     }
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+
+		// get a list of students
+		List<Student> theStudents = studentDAO.findByLastName("Public");
+
+		// display list of students
+		for (Student tempStudent : theStudents) {
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		//get the student by id
+		int studentId = 1;
+		System.out.println("Getting the student with id " + studentId);
+		Student theStudent = studentDAO.findById(studentId);
+
+		//change the first name to scooby
+		System.out.println("Changing the first name to Scooby...");
+		theStudent.setFirstName("Scooby");
+
+		//update the student
+        studentDAO.updateStudent(theStudent);
+
+		//display the updated student
+		System.out.println("Student updated");
+
+
+	}
 }
+
