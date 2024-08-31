@@ -12,7 +12,6 @@ import com.luv2code.cruddemo.entity.Student;
 
 @SpringBootApplication
 public class CruddemoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
@@ -30,11 +29,15 @@ public class CruddemoApplication {
 
 			//queryForStudentsByLastName(studentDAO);
 
-			updateStudent(studentDAO);
+			//updateStudent(studentDAO);
+
+			deleteStudent(studentDAO);
 
 		};
 	}
 
+
+	
 
 	private void readStudent(StudentDAO studentDAO) {
 		//create a new student object
@@ -125,8 +128,12 @@ public class CruddemoApplication {
 
 		//display the updated student
 		System.out.println("Student updated");
+	}
 
-
+	private void deleteStudent(StudentDAO studentDAO) {
+		int id = 3;//Deleting the student from the database having the id as 3
+        System.out.println("Deleting the Student with id " + id);
+		studentDAO.delete(id);
 	}
 }
 
